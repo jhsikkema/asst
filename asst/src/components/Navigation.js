@@ -26,6 +26,7 @@ class Navigation extends Component {
                         
                         <Nav>
                         <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="xmas-card-writer">Christmas Card Writer</Nav.Link>
                             <Nav.Link href="article-writer">Article Writer</Nav.Link>
                             <Nav.Link href="article-proofer">Article Proofer</Nav.Link>
                             <Nav.Link href="tweet-writer">Tweet Writer</Nav.Link>
