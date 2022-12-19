@@ -1,7 +1,8 @@
-import React from "react"
-import { Component } from "react"
-import { Container, Form, Button, Card } from "react-bootstrap";
-const { Configuration, OpenAIApi } = require("openai");
+import React from 'react'
+import { Component } from 'react'
+import { Container, Form, Button, Card } from 'react-bootstrap';
+const { Configuration, OpenAIApi } = require('openai');
+
 
 
 class ArticleWriter extends Component {
@@ -24,25 +25,38 @@ class ArticleWriter extends Component {
         const formData = new FormData(e.target),
         formDataObj = Object.fromEntries(formData.entries())
         console.log(formDataObj.articleName)
+        
 
-        this.setState({
-            heading: `AI Article Writer Draft for: ${formDataObj.articleName}`,
-            response: 'The response from the OpenAI will be shown here'
+
+        const configuration = new Configuration({
+            apiKey: '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',
+        });
+        
+        const openai = new OpenAIApi(configuration);
+        
+        openai.createCompletion("text-davinci-003", {
+            prompt: `Write a detailed, smart, informative article about the following topic ${formDataObj.articleName}`,
+            temperature: 0.73,
+            max_tokens: 1372,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0,
         })
+        .then((response) => {
+            this.setState({
+                heading: `AI artcle writer draft for: ${formDataObj.articleName}`,
+                response: `${response.data.choices[0].text}`
+            })
+        });
+
+        
     }
-
-
-
-
-
-
+   
 
     render() {
         return (
             <div>
                 
-
-
             <Container>
                 <h1>Write your article now</h1>
                 <br /><br />
@@ -59,7 +73,7 @@ class ArticleWriter extends Component {
                         <Form.Control
                             type="text"
                             name="articleName"
-                            placeholder="Enter your article title" />
+                            placeholder="Enter your article topic" />
 
                             <Form.Text className="text-muted">
                                 Enter as much information as possible for a more accurate article
