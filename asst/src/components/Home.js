@@ -15,9 +15,13 @@ class Home extends Component {
                         <img className="d-block w-100" src={cimage1} alt="Whatever we use" />
                     </Carousel.Item>
                 </Carousel>
-                <br /><br />
-            
+      
+
                 <Container>
+                <br /><br />
+                <h1>Introduction Paragraph Can Go Here</h1>
+                <p>Sub title and information will go here</p>
+                <br /><br />
             <Row>
                 <Col>
                     <Display header="Xmas Card Writer"
