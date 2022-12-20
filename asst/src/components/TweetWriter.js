@@ -11,12 +11,13 @@ const openai = new OpenAIApi(configuration);
 
 
 
+
 class Tweet extends Component {
 
 
     render() {
         
-
+        
         
         return (
             <div>
