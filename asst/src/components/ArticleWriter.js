@@ -8,6 +8,7 @@ const { Configuration, OpenAIApi } = require('openai');
 class ArticleWriter extends Component {
 
 
+
     constructor() {
         super()
         this.state = {
@@ -27,9 +28,8 @@ class ArticleWriter extends Component {
         console.log(formDataObj.articleName)
         
 
-
         const configuration = new Configuration({
-            apiKey: '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',
+            apiKey: process.env.OPENAI_API_KEY,
         });
         
         const openai = new OpenAIApi(configuration);
