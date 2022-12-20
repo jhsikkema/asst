@@ -51,13 +51,28 @@ const config = {
 
 module.exports = () => {
   if (isProduction) {
+
     config.mode = "production";
+    config.experiments = {
+      topLevelAwait: true
+    }
+
+    config.resolve = {
+      extensions: [".js", ".jsx"]
+    }
 
     config.plugins.push(new MiniCssExtractPlugin());
 
     config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
   } else {
     config.mode = "development";
+    config.experiments = {
+      topLevelAwait: true
+    }
+    config.resolve = {
+      extensions: [".js", ".jsx"]
+    }
   }
   return config;
+  
 };
