@@ -58,6 +58,12 @@ module.exports = () => {
     }
 
     config.resolve = {
+      fallback: {
+          "fs": false
+      },
+  }
+
+    config.resolve = {
       extensions: [".js", ".jsx"]
     }
 
