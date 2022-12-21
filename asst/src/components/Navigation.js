@@ -16,21 +16,22 @@ class Navigation extends Component {
                         src={logo}
                         className="d-inline-block align-top"
                         alt="React Bootstrap logo"
+                        width={'125px'}
                         />
                     </Navbar.Brand>
                   
 
                     <Navbar.Toggle />
 
-                    <Navbar.Collapse>
+                    <Navbar.Collapse className="justify-content-end">
                         
-                        <Nav>
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="xmas-card-writer">Christmas Card Writer</Nav.Link>
-                            <Nav.Link href="article-writer">Article Writer</Nav.Link>
-                            <Nav.Link href="article-proofer">Article Proofer</Nav.Link>
-                            <Nav.Link href="tweet-writer">Tweet Writer</Nav.Link>
-                        </Nav>
+                    <Nav >
+                        
+                        <Nav.Link href="xmas-card-writer" className="mx-2">Christmas Card Writer</Nav.Link>
+                        <Nav.Link href="article-writer" className="mx-2">Article Writer</Nav.Link>
+                        <Nav.Link href="article-proofer" className="mx-2">Article Proofer</Nav.Link>
+                        <Nav.Link href="tweet-writer" className="mx-2">Tweet Writer</Nav.Link>
+                    </Nav>
 
                     </Navbar.Collapse>
                     </Container>

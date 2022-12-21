@@ -31,7 +31,7 @@ const ArticleWriter = () => {
             model: 'text-davinci-003',
             prompt: `Write a detailed, smart, informative article about the following topic ${formDataObj.articleName}`,
             temperature: 0.73,
-            max_tokens: 50,
+            max_tokens: 300,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
