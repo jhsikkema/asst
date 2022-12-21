@@ -1,31 +1,24 @@
-import React from 'react'
+import React, { useState } from "react";
 import { Component } from 'react'
 import { Container, Form, Button, Card } from 'react-bootstrap';
+import axios from "axios";
+
 const { Configuration, OpenAIApi } = require('openai');
+const API_KEY = process.env.REACT_APP_OPENAI_API_KEY
 
+const ArticleWriter = () => {
 
+        const [heading, setHeading] = useState("The response from the AI will be shown here...");
+        const [response, setResponse] = useState(".......... the AI is pondering world domination");
 
-class ArticleWriter extends Component {
-
-
-
-    constructor() {
-        super()
-        this.state = {
-            heading: 'The response from the AI will be shown here...',
-            response: '.......... the AI is pondering world domination'
-        }
-    }
-
-
-    onFormSubmit = e => {
+    function onFormSubmit(e) {
         //start by preveting default page refresh
-        e.preventDefault()
+        e.preventDefault();
 
 
         const formData = new FormData(e.target),
         formDataObj = Object.fromEntries(formData.entries())
-        console.log(formDataObj.articleName)
+        
         
 
         const configuration = new Configuration({
@@ -33,29 +26,38 @@ class ArticleWriter extends Component {
         });
         
         const openai = new OpenAIApi(configuration);
-        
-        openai.createCompletion("text-davinci-003", {
+
+        const data = {
+            model: 'text-davinci-003',
             prompt: `Write a detailed, smart, informative article about the following topic ${formDataObj.articleName}`,
             temperature: 0.73,
-            max_tokens: 1372,
+            max_tokens: 50,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
+        }
+
+        axios.post("https://api.openai.com/v1/completions", data, {
+            headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + API_KEY,
+            },
+            
         })
-        .then((response) => {
-            this.setState({
-                heading: `AI artcle writer draft for: ${formDataObj.articleName}`,
-                response: `${response.data.choices[0].text}`
-            })
+        .then(response => {
+            console.log(response.data);
+            setHeading(`AI artcle writer draft for: ${formDataObj.articleName}`);
+            setResponse(`${response.data.choices[0].text}`);
+        })
+        .catch(error => {
+            console.log(error);
         });
 
         
     }
-   
-
-    render() {
-        return (
-            <div>
+ 
+    return (
+        <div>
                 
             <Container>
                 <h1>Write your article now</h1>
@@ -64,7 +66,7 @@ class ArticleWriter extends Component {
 
                 <br /><br />
 
-                <Form onSubmit={this.onFormSubmit}>
+                <Form onSubmit={onFormSubmit}>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>
@@ -91,13 +93,13 @@ class ArticleWriter extends Component {
                 <Card>
                     <Card.Body>
                         <Card.Title>
-                            <h1>{this.state.heading}</h1></Card.Title>
+                            <h1>{heading}</h1></Card.Title>
                    
                             <hr />
                             <br />
 
                         <Card.Text>
-                           {this.state.response}
+                           {response}
                         </Card.Text>
                     </Card.Body>    
                 </Card>
@@ -109,8 +111,7 @@ class ArticleWriter extends Component {
 
 
             </div>
-        )
-    }
-}
+    );
+};
 
 export default ArticleWriter;

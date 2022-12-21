@@ -82,3 +82,4 @@ module.exports = () => {
   return config;
   
 };
+resolve.fallback: { "os": false }

@@ -2,35 +2,32 @@ import React from "react"
 import { Component } from "react"
 import axios from 'axios';
 const { Configuration, OpenAIApi } = require('openai');
-const apiKey = process.env.OPENAI_API_KEY;
+const API_KEY = process.env.REACT_APP_OPENAI_API_KEY
 
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-});
 
 
 class Tweet extends Component {
     state = {
-      completion: ''
+      completion: []
     }
   
     componentDidMount() {
       const data = {
         model: 'text-davinci-003',
-        prompt: 'Write a short poem about Michael Moss',
-        temperature: 0,
-        max_tokens: 7,
+        prompt: 'Write an article about Brexit:',
+        temperature: 1,
+        max_tokens: 50,
       };
       
       axios.post('https://api.openai.com/v1/completions', data, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer' + apiKey,
+          Authorization: 'Bearer ' + API_KEY,
         },
       })
         .then(response => {
           // handle success
-          this.setState({ completion: response.data })
+          this.setState({ completion: [...this.state.completion, response.data.choices[0].text] })
         })
         .catch(error => {
           // handle error
@@ -41,7 +38,9 @@ class Tweet extends Component {
     render() {
       return (
         <div>
-          {this.state.completion}
+          {this.state.completion.map((completion, index) => (
+            <div key={index}>{completion}</div>
+          ))}
         </div>
       )
     }
