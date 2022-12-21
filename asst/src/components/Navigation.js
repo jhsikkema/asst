@@ -27,10 +27,10 @@ class Navigation extends Component {
                         
                     <Nav >
                         
-                        <Nav.Link href="xmas-card-writer" className="mx-2">Christmas Card Writer</Nav.Link>
-                        <Nav.Link href="article-writer" className="mx-2">Article Writer</Nav.Link>
-                        <Nav.Link href="article-proofer" className="mx-2">Article Proofer</Nav.Link>
-                        <Nav.Link href="tweet-writer" className="mx-2">Tweet Writer</Nav.Link>
+                        <Nav.Link href="xmas-card-writer" className="mx-2" active={window.location.pathname === '/xmas-card-writer'}>Christmas Card Writer</Nav.Link>
+                        <Nav.Link href="article-writer" className="mx-2" active={window.location.pathname === '/article-writer'}>Article Writer</Nav.Link>
+                        <Nav.Link href="article-proofer" className="mx-2" active={window.location.pathname === '/article-proofer'}>Article Proofer</Nav.Link>
+                        <Nav.Link href="tweet-writer" className="mx-2" active={window.location.pathname === '/tweet-writer'}>Tweet Writer</Nav.Link>
                     </Nav>
 
                     </Navbar.Collapse>
@@ -42,4 +42,3 @@ class Navigation extends Component {
 }
 
 export default Navigation;
-
