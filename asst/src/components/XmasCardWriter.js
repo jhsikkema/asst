@@ -24,7 +24,10 @@ function onFormSubmit(e) {
     const formData = new FormData(e.target),
     formDataObj = Object.fromEntries(formData.entries())
     setProgress(10);
-          
+    console.log(process.env)
+    console.log(process.env.REACT_APP_OPENAI_API_KEY)
+    console.log(REACT_APP_OPENAI_API_KEY)
+    
     const configuration = new Configuration({
         apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     });
