@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Component } from 'react'
-import { Container, Form, Button, Card, Row, Col, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Card, Row, Col, Alert, FormControl } from 'react-bootstrap';
 import axios from "axios";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
@@ -89,9 +89,10 @@ return (
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                    
-                    <Form.Control
+                    <Form.Control as="textArea"
                         type="text"
                         name="articleName"
+                        style={{height: "200px"}}
                         placeholder="Enter your article topics, for example: History of AI, with a focus on the BERT sentiment model" />
 
                         <Form.Text className="text-muted">
