@@ -19,27 +19,27 @@ class Home extends Component {
 
                 <Container>
                 <br /><br />
-                <h1>Introduction Paragraph Can Go Here</h1>
-                <p>Sub title and information will go here</p>
+                <h1>The worlds most advanced A.I Asst.</h1>
+                <p>AI assistant, or asst. for short, will transforms your productivity</p>
                 <br /><br />
             <Row>
                 <Col>
-                    <Display header="Xmas Card Writer"
-                    title="Title one goes here"
+                    <Display header="Writing"
+                    title="Christmas Card Writer"
                     text="The text for card 1 goes here"
                     theLink="/xmas-card-writer" />
                 </Col>
                 <Col>
-                    <Display header="Article Writer"
-                    title="Title one goes here"
+                    <Display header="Writing"
+                    title="Article Writer"
                     text="The text for card 1 goes here"
-                    theLink="/xmas-card-writer" />
+                    theLink="/article-writer" />
                 </Col>
                 <Col>
-                    <Display header="Tweet Writer"
-                    title="Title one goes here"
+                    <Display header="Proofing"
+                    title="Proofing Asst"
                     text="The text for card 1 goes here"
-                    theLink="/xmas-card-writer" />
+                    theLink="/article-proofer" />
                 </Col>
             </Row>
 

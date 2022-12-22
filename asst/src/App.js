@@ -2,7 +2,7 @@ import './App.css';
 import Navigation from './components/Navigation';
 import Home from './components/Home';
 import ArticleWriter from './components/ArticleWriter';
-import Proof from './components/ArticleProofer';
+import ArticleProofer from './components/ArticleProofer';
 import Xmas from './components/XmasCardWriter';
 import Tweet from './components/TweetWriter';
 
@@ -22,10 +22,8 @@ function App() {
           <Route path='/' exact element={<Home/>} />
           <Route path='/xmas-card-writer' exact element={<Xmas/>} />
           <Route path='/article-writer' exact element={<ArticleWriter/>} />
-          <Route path='/article-proofer' exact element={<Proof/>} />
+          <Route path='/article-proofer' exact element={<ArticleProofer/>} />
           <Route path='/tweet-writer' exact element={<Tweet/>} />
-
-
       
 
         </Routes>

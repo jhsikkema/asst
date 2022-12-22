@@ -19,7 +19,7 @@ class Display extends Component {
                                 {text}
                                 </Card.Text>
                                 <Nav.Link href={theLink}>
-                                    <Button variant="primary" size="lg">Go somewhere</Button>
+                                    <Button variant="dark" size="lg">Launch Asst</Button>
                                 </Nav.Link>
                             </Card.Body>
                     </Card>

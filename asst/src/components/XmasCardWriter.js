@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Component } from 'react'
-import { Container, Form, Button, Card, Row, Col, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Card, Row, Col, Alert, FormControl } from 'react-bootstrap';
 import axios from "axios";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
@@ -78,23 +78,24 @@ return (
         <Col md={{ span: 8, offset: 2 }}>
 
 
-            <h1>Xmas Card Writing Asst</h1>
+            <h1>Christmas Card Message Writing Asst</h1>
             <br /><br />
-            <h2>Enter recipient's name and Asst will do the rest</h2>
+            <h3>Enter name, relationship to you, and any other relevent info</h3>
 
-            <br /><br />
+            <br />
 
             <Form onSubmit={onFormSubmit}>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                    
-                    <Form.Control
+                    <Form.Control as="textArea"
                         type="text"
                         name="recipientName"
-                        placeholder="Enter recipient's name and any personal information I should consider" />
+                        style={{height: "200px"}}
+                        placeholder="Enter recipient's name and any personal information we should consider" />
 
                         <Form.Text className="text-muted">
-                            Enter the recipient's name and their relationship with you for a more personalised message
+                            
                         </Form.Text>
                 </Form.Group>
 

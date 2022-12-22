@@ -15,6 +15,8 @@ const ArticleWriter = () => {
 
     const [progress, setProgress] = useState(0);
     const [showProgressBar, setShowProgressBar] = useState(false);
+    const [showResponseCard, setShowResponseCard] = useState(false);
+    const [buttonText, setButtonText] = useState("Write Article");
 
 function onFormSubmit(e) {
     //start by preveting default page refresh
@@ -34,9 +36,9 @@ function onFormSubmit(e) {
 
     const data = {
         model: 'text-davinci-003',
-        prompt: `Write a detailed, smart, informative article about the following topic ${formDataObj.articleName}`,
+        prompt: `Write a detailed, smart, informative article about the following topics and concepts ${formDataObj.articleName}`,
         temperature: 0.73,
-        max_tokens: 60,
+        max_tokens: 500,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
@@ -55,6 +57,8 @@ function onFormSubmit(e) {
         setHeading(`Draft Article: ${formDataObj.articleName}`);
         setResponse(`${response.data.choices[0].text}`);
         setProgress(100);
+        setShowResponseCard(true);
+        setButtonText("Redraft Article");
     })
     .catch(error => {
         console.log(error);
@@ -75,7 +79,7 @@ return (
         <Col md={{ span: 8, offset: 2 }}>
 
 
-            <h1>Article Writing Asst</h1>
+            <h1>Article Writer Asst</h1>
             <br /><br />
             <h2>Enter topics and Asst will do the rest</h2>
 
@@ -88,7 +92,7 @@ return (
                     <Form.Control
                         type="text"
                         name="articleName"
-                        placeholder="Enter your article topic" />
+                        placeholder="Enter your article topics, for example: History of AI, with a focus on the BERT sentiment model" />
 
                         <Form.Text className="text-muted">
                             Enter as much information as possible for a more accurate article
@@ -96,7 +100,7 @@ return (
                 </Form.Group>
 
                 <Button variant="dark gradient" size="lg" type="submit">
-                    Write your AI Article now
+                {buttonText}
                 </Button>
 
                 {showProgressBar && <ProgressBar style={{width: "400px", height: "40px", marginLeft: "auto", marginRight: "auto", marginTop: "1rem"}} variant="success" now={progress} label={`${Math.round(progress)}%`} />}
@@ -106,16 +110,17 @@ return (
 
             <br /><br />
 
+            {showResponseCard ? (
             <Card>
                 <Card.Body>
                     <Card.Title>
-                        <h3>{heading}</h3></Card.Title>
+                        <h3> {heading} </h3></Card.Title>
                
                         <hr />
                         <br />
 
                     <Card.Text>
-                       {response}
+                     {response} 
                     </Card.Text>
 
                     {progress === 100 && <Button variant="dark" size="lg" onClick={copyToClipboard}>
@@ -124,6 +129,9 @@ return (
                     {copySuccess && <Alert style={{marginTop: "1rem" }} variant="success">{copySuccess}</Alert>}
                 </Card.Body>    
             </Card>
+            ) : (
+            null
+            )}
             </Col>
       </Row>
         </Container>
