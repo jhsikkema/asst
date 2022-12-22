@@ -6,6 +6,8 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 
 const { Configuration, OpenAIApi } = require('openai');
 const API_KEY = process.env.REACT_APP_OPENAI_API_KEY
+console.log(API_KEY)
+console.log(process.env)
 
 const Xmas = () => {
     const [heading, setHeading] = useState("The response from the AI will be shown here...");
