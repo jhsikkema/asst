@@ -42,7 +42,7 @@ function onFormSubmit(e) {
       model: 'text-davinci-003',
       prompt: `Write a ${formDataObj.tweetType} about the following topics and concepts ${formDataObj.tweetIdea}`,
       temperature: 0.73,
-      max_tokens: 140,
+      max_tokens: 480,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
@@ -88,7 +88,7 @@ const copyToClipboard = (e) => {
 
 const postTweet = (e) => {
   axios.post("https://api.twitter.com/1.1/statuses/update.json", {
-    status: response 
+    status: tweetType === 'tweet' ? response : `${response}\n\n#Thread` 
   })
   .then(response => {
       console.log(response.data);
