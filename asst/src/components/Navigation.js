@@ -29,6 +29,7 @@ class Navigation extends Component {
                         
                         <Nav.Link href="xmas-card-writer" className="mx-2" active={window.location.pathname === '/xmas-card-writer'}>Christmas Card Writer</Nav.Link>
                         <Nav.Link href="article-writer" className="mx-2" active={window.location.pathname === '/article-writer'}>Article Writer</Nav.Link>
+                        <Nav.Link href="article-news-writer" className="mx-2" active={window.location.pathname === '/article-news-writer'}>News as New</Nav.Link>
                         <Nav.Link href="article-proofer" className="mx-2" active={window.location.pathname === '/article-proofer'}>Article Proofer</Nav.Link>
                         <Nav.Link href="tweet-writer" className="mx-2" active={window.location.pathname === '/tweet-writer'}>Tweet Writer</Nav.Link>
                     </Nav>
