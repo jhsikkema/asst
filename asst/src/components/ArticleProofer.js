@@ -76,7 +76,7 @@ return (
         <Container>
         <Row className="mt-5">
         <Col md={{ span: 8, offset: 2 }}>
-            <h1>Article Proofer Asst</h1>
+            <h1>Proof Anything Asst</h1>
             <br /><br />
             <h2>Enter article and Asst will do the rest</h2>
 
@@ -86,7 +86,7 @@ return (
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                    
-                    <FormControl as="textArea" 
+                    <FormControl as="textarea" 
                         type="text"
                         name="articleName"
                         placeholder="Enter your article, for example: Artificial Intelligence (AI) is a field of computer science that has been around for decades. The goal of AI is to automate tasks that humans are currently required to perform." 

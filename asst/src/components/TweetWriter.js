@@ -117,7 +117,7 @@ return (
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
                  
-                  <Form.Control as="textArea"
+                  <Form.Control as="textarea"
                       type="text"
                       name="tweetIdea"
                       style={{height: "200px"}}

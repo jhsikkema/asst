@@ -86,7 +86,7 @@ return (
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                    
-                    <FormControl as="textArea" 
+                    <FormControl as="textarea" 
                         type="text"
                         name="articleName"
                         placeholder="Enter your article, for example: Artificial Intelligence (AI) is a field of computer science that has been around for decades. The goal of AI is to automate tasks that humans are currently required to perform." 
