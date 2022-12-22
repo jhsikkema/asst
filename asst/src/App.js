@@ -5,7 +5,6 @@ import ArticleWriter from './components/ArticleWriter';
 import ArticleProofer from './components/ArticleProofer';
 import Xmas from './components/XmasCardWriter';
 import Tweet from './components/TweetWriter';
-import Footer from './components/Footer';
 import ArticleReWriter from './components/ReWriter';
 
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -31,7 +30,7 @@ function App() {
 
         </Routes>
 
-        <Footer />
+        
 
       </div>
 

@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
-import { Component } from 'react'
-import { Container, Form, Button, Card, Row, Col, Alert, FormControl } from 'react-bootstrap';
+import { Container, Form, Button, Card, Row, Col, Alert } from 'react-bootstrap';
 import axios from "axios";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
