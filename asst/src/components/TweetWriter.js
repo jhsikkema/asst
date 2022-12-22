@@ -8,10 +8,13 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 const { Configuration, OpenAIApi } = require('openai');
 const API_KEY = process.env.REACT_APP_OPENAI_API_KEY
 
+
 const Tweet = () => {
   const [heading, setHeading] = useState("The response from the AI will be shown here...");
   const [response, setResponse] = useState(".......... the AI is pondering world domination");
   const [copySuccess, setCopySuccess] = useState("");
+  const [tweetSuccess, setTweetSuccess] = useState("");
+  const [tweetType, setTweetType] = useState("");
 
   const [progress, setProgress] = useState(0);
   const [showProgressBar, setShowProgressBar] = useState(false);
@@ -25,6 +28,7 @@ function onFormSubmit(e) {
   const formData = new FormData(e.target),
   formDataObj = Object.fromEntries(formData.entries())
   setProgress(10);
+  setTweetType(formDataObj.tweetType);
         
   const configuration = new Configuration({
       apiKey: process.env.REACT_APP_OPENAI_API_KEY,
@@ -36,7 +40,7 @@ function onFormSubmit(e) {
 
   const data = {
       model: 'text-davinci-003',
-      prompt: `Write a tweet about the following topics and concepts ${formDataObj.tweetIdea}`,
+      prompt: `Write a ${formDataObj.tweetType} about the following topics and concepts ${formDataObj.tweetIdea}`,
       temperature: 0.73,
       max_tokens: 140,
       top_p: 1,
@@ -54,8 +58,19 @@ function onFormSubmit(e) {
   })
   .then(response => {
       console.log(response.data);
+      let tweetResponse;
+      if (tweetType === 'tweet') {
+        tweetResponse = response.data.choices[0].text
+      } else {
+        // create the tweet thread response
+        let tweetThreadResponse = '';
+        response.data.choices.forEach((tweet, index) => {
+          tweetThreadResponse += `${index + 1}. ${tweet.text}\n`;
+        })
+        tweetResponse = tweetThreadResponse;
+      }
       setHeading(`Draft Tweet: ${formDataObj.tweetIdea}`);
-      setResponse(`${response.data.choices[0].text}`);
+      setResponse(tweetResponse);
       setProgress(100);
       setShowResponseCard(true);
       setButtonText("Redraft Tweet");
@@ -70,6 +85,19 @@ const copyToClipboard = (e) => {
   navigator.clipboard.writeText(response);
   setCopySuccess("Copied!");
 };
+
+const postTweet = (e) => {
+  axios.post("https://api.twitter.com/1.1/statuses/update.json", {
+    status: response 
+  })
+  .then(response => {
+      console.log(response.data);
+      setTweetSuccess("Tweet Posted!");
+  })
+  .catch(error => {
+      console.log(error);
+  });
+}
 
 return (
   <div>
@@ -96,8 +124,15 @@ return (
                       placeholder="Enter your tweet ideas, for example: The importance of technology in education" />
 
                       <Form.Text className="text-muted">
-                          Enter as much information as possible for a more accurate tweet
+ Enter as much information as possible for a more accurate tweet
                       </Form.Text>
+
+                      <Form.Group>
+                        <Form.Control as="select" name="tweetType" onChange={e => setTweetType(e.target.value)}>
+                          <option>tweet</option>
+                          <option>tweet thread</option>
+                        </Form.Control>
+                      </Form.Group>
               </Form.Group>
 
               <Button variant="dark gradient" size="lg" type="submit">
@@ -126,8 +161,12 @@ return (
 
                   {progress === 100 && <Button variant="dark" size="lg" onClick={copyToClipboard}>
                       Copy To Clipboard
+                  </Button>} <br/> <br/> <br/> 
+                  {progress === 100 && <Button variant="dark" size="lg" onClick={postTweet}>
+                      Post Tweet
                   </Button>}
-                  {copySuccess && <Alert style={{marginTop: "1rem" }} variant="success">{copySuccess}</Alert>}
+                  {copySuccess && <Alert style={{marginTop: "1rem" }} variant="success">{copySuccess}</Alert>} <br />
+                  {tweetSuccess && <Alert style={{marginTop: "1rem" }} variant="success">{tweetSuccess}</Alert>}
               </Card.Body>    
           </Card>
           ) : (
